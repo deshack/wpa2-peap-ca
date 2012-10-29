@@ -1,0 +1,20 @@
+name = WPA2-PEAP-CA
+author = dapal
+version = 1
+require identity *Username domain *Domain password *Password
+optional ca_cert *Path_to_CA_Cert
+protected password *Password
+-----
+ctrl_interface=/var/run/wpa_supplicant
+network={
+    ssid="$_ESSID"
+    proto=RSN
+    key_mgmt=WPA-EAP
+    pairwise=CCMP
+    eap=PEAP
+    identity="$_DOMAIN\$_IDENTITY"
+    password="$_PASSWORD"
+    ca_cert="$_CA_CERT"
+    phase1="peaplabel=0"
+    phase2="auth=MSCHAPv2"
+}
